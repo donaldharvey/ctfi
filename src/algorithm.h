@@ -139,6 +139,7 @@ public:
     virtual void assign_initial_superpixels(map<int, vector<Point>>& superpixel_assigments) {};
     CTFAlgorithm(Engine& engine) : SegmentationAlgorithm(engine) {
         total_energy = get_initial_energy();
+        num_iterations = 0;
     };
 };
 
