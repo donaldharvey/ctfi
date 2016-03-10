@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     string filename = string(argv[1]);
     Engine e = Engine(image, filename, atoi(argv[2]));
     
-    if (string(argv[4]) == "orig") {
+    if (string(argv[3]) == "orig") {
         CTFIAlgorithm algo(e);
         e.setup(&algo);
     }
