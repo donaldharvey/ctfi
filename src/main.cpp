@@ -44,9 +44,8 @@ int main(int argc, const char * argv[]) {
 //        imwrite("/me/s/desk/out" + to_string(e.level) + "-mean.png", m2);
     }
     imwrite(e.get_input_basename() + ".png", e.labels);
-    for(auto &move : e.algorithm->moves_log) {
-        out << move.energy.col_part << "\t" <<move.energy.reg_part << "\t" << move.num_iterations << "\t" << move.level << endl;
-    }
+    auto &move = e.algorithm->moves_log.back()
+    out << move.energy.col_part << "\t" <<move.energy.reg_part << "\t" << move.num_iterations << "\t" << move.level << endl;
     out.close();
 }
 
