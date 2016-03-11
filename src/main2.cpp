@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
 //        e.setup(&algo);
 //    }
 //    else {
-        CTFIAlgorithm algo2(e);
+        OrigCTFAlgorithm algo2(e);
         e.setup(&algo2);
 //    }
     
