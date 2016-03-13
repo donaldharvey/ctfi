@@ -33,6 +33,12 @@ int main(int argc, const char * argv[]) {
     ofstream out;
     out.open(e.get_input_basename() + ".log", ios::out);
     out << e.algorithm->total_energy.col_part << "\t" << e.algorithm->total_energy.reg_part << "\t" << 0 << "\t" << e.level << endl;
+    
+    Mat out_mat;
+    e.labels.convertTo(out_mat, CV_16U);
+    out_mat += 1;
+    imwrite(e.get_input_basename() + "-init.png", out_mat);
+    
     while (e.level > 0) {
         e.run_level();
 //        e.draw_boundaries(m);
@@ -43,7 +49,6 @@ int main(int argc, const char * argv[]) {
 //        imwrite("/me/s/desk/out" + to_string(e.level) + ".png", m);
 //        imwrite("/me/s/desk/out" + to_string(e.level) + "-mean.png", m2);
     }
-    Mat out_mat;
     e.labels.convertTo(out_mat, CV_16U);
     out_mat += 1;
     imwrite(e.get_input_basename() + ".png", out_mat);
