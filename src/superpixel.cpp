@@ -10,6 +10,10 @@ void Superpixel::remove_block(Block* block) {
     sums -= block->sums;
 }
 
+void Superpixel::reset() {
+    blocks.clear();
+}
+
 Superpixel::Superpixel(Engine& engine, int id, int initial_size) : engine(engine), id(id), initial_size(initial_size), blocks() {
     sums = {};
 }

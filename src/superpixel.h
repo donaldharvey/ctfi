@@ -19,6 +19,7 @@ public:
     
     void add_block(Block* block);
     void remove_block(Block* block);
+    void reset();
     bool contains_block(Block* block);
     
     sums sums;

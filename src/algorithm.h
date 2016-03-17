@@ -140,6 +140,7 @@ public:
     CTFAlgorithm(Engine& engine) : SegmentationAlgorithm(engine) {
         total_energy = get_initial_energy();
         num_iterations = 0;
+        moves_log = {};
     };
 };
 

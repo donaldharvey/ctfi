@@ -28,8 +28,8 @@ int main(int argc, const char * argv[]) {
 //    Mat m2;
 //    e.draw_boundaries(m);
 //    e.draw_means(m2);
-//    imwrite("/me/s/desk/out9.png", m);
-//    imwrite("/me/s/desk/out9-mean.png", m2);
+//    imwrite(string("/me/d/iCtF superpixels/101087 intermediates/iCtF/") + argv[2] + "/out-init.png", m);
+//    imwrite(string("/me/d/iCtF superpixels/101087 intermediates/iCtF/") + argv[2] + "/out-init-mean.png", m2);
     ofstream out;
     out.open(e.get_input_basename() + ".log", ios::out);
     out << e.algorithm->total_energy.col_part << "\t" << e.algorithm->total_energy.reg_part << "\t" << 0 << "\t" << e.level << endl;
@@ -46,8 +46,8 @@ int main(int argc, const char * argv[]) {
 //        for(auto b: e.blocks) {
 //            cout << "(" << b->index << "): " << e.algorithm.label_change_violates_connectivity(b);
 //        }
-//        imwrite("/me/s/desk/out" + to_string(e.level) + ".png", m);
-//        imwrite("/me/s/desk/out" + to_string(e.level) + "-mean.png", m2);
+//        imwrite(string("/me/d/iCtF superpixels/101087 intermediates/iCtF/") + argv[2] + "/out-" + to_string(e.level) + ".png", m);
+//        imwrite(string("/me/d/iCtF superpixels/101087 intermediates/iCtF/") + argv[2] + "/out-" + to_string(e.level) + "-mean.png", m2);
     }
     
     e.labels.convertTo(out_mat, CV_16U);

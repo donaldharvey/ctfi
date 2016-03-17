@@ -44,7 +44,6 @@ void Engine::initialize_superpixels() {
         for (auto idx: it.second) {
             auto b = blocks(idx);
             auto ptr = &superpixels[it.first];
-            cout << ptr << endl;
             b->superpixel = ptr;
             b->superpixel->add_block(b);
             b->superpixel->initial_size += b->size.area();
@@ -164,6 +163,12 @@ void Engine::initialize_superpixels() {
 //}
 
 void Engine::split_blocks() {
+    cout << "Splitting..." << endl;
+    
+    for (auto &sp: superpixels) {
+        sp.reset();
+    }
+    
     int row_sum = 0, col_sum = 0;
     for (Block* block : blocks(Rect(0,0,1,blocks.rows))) {
         row_sum += (block->size.height == 1 ? 1 : 2);
@@ -171,6 +176,7 @@ void Engine::split_blocks() {
     for (Block* block : blocks(Rect(0,0,blocks.cols, 1))) {
         col_sum += (block->size.width == 1 ? 1 : 2);
     }
+    cout << "New dims: " << row_sum << " x " << col_sum << endl;
     Mat_<Block*> new_blocks(row_sum, col_sum);
     
     
@@ -180,6 +186,7 @@ void Engine::split_blocks() {
         int new_h = (blocks(i,0)->size.height == 1 ? 1 : 2);
         for (int j = 0; j < blocks.cols; ++j) {
             Block* block = blocks(i,j);
+            assert(block->level == level);
             int new_w = (block->size.width == 1 ? 1 : 2);
             auto m = new_blocks(Rect(new_col, new_row, new_w, new_h));
             block->split(m, Point(new_col, new_row));

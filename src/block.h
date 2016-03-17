@@ -19,6 +19,7 @@ public:
     Point index;
     Size size;
     int level;
+    Mat_<Block*> subblocks;
     
     sums sums;
     Engine* engine;
