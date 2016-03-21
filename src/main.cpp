@@ -37,9 +37,17 @@ int main(int argc, const char * argv[]) {
     Mat out_mat;
     e.labels.convertTo(out_mat, CV_16U);
     out_mat += 1;
-    imwrite(e.get_input_basename() + "-init.png", out_mat);
+//    imwrite(e.get_input_basename() + "-init.png", out_mat);
     
-    while (e.level > 0) {
+    int min_level = 0;
+    if (argc > 3) {
+        min_level = atoi(argv[3]);
+    }
+    else {
+        min_level = 0;
+    }
+    
+    while (e.level > min_level) {
         e.run_level();
 //        e.draw_boundaries(m);
 //        e.draw_means(m2);
